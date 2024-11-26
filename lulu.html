@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luta de Anime - Lulu Teteia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        .video-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .chat-container {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .messages {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .message.user {
+            background-color: #e6f7ff;
+            align-self: flex-end;
+        }
+        .message.system {
+            background-color: #f1f1f1;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Luta de Anime - Lulu Teteia</h1>
+    <div class="video-container">
+        <!-- Substitua o link pelo ID do vídeo que você quer exibir -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_sisrKCuIyc?si=Fai3XQBsWzCZ4Tbj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="chat-container">
+        <div class="messages" id="messages">
+            <!-- As mensagens aparecerão aqui -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const messagesContainer = document.getElementById('messages');
+        const chatInput = document.getElementById('chatInput');
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === "") return;
+
+            // Adiciona a mensagem do usuário
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = message;
+            messagesContainer.appendChild(userMessage);
+
+            // Resposta do sistema
+            const systemMessage = document.createElement('div');
+            systemMessage.className = 'message system';
+            systemMessage.textContent = `Você disse: "${message}"`;
+            messagesContainer.appendChild(systemMessage);
+
+            // Limpa o input e rola para o final
+            chatInput.value = "";
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Envia mensagem ao pressionar Enter
+        chatInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
